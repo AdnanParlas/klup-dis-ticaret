@@ -22,18 +22,26 @@ a { text-decoration: none; color: inherit; }
 /* ============ STAGE (poster) ============ */
 .stage {
   position: fixed; inset: 0;
-  background:
-    linear-gradient(180deg, #0e417a 0%, #0b305d 30%, #07203f 100%);
+  background: #07203f;
+  overflow: hidden;
 }
+/* Boşlukları dolduran: AYNI fotoğrafın bulanık hali */
+.stage::after {
+  content: "";
+  position: absolute; inset: -40px; z-index: 0;
+  background: url('assets/hero-ship.jpeg') center center / cover no-repeat;
+  filter: blur(34px) brightness(.5);
+}
+/* Net poster: tamamen görünür (kırpılmaz) */
 .stage::before {
   content: "";
-  position: absolute; inset: 0;
-  background: url('assets/hero-ship.jpeg') center top / cover no-repeat;
-}
-/* alttaki gömülü butonu yumuşatan + paneli okunur kılan karartma */
-.scrim {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, transparent 55%, rgba(4, 14, 28, 0.55) 78%, rgba(3, 11, 22, 0.92) 100%);
+  background: url('assets/hero-ship.jpeg') center center / contain no-repeat;
+}
+/* Paneli okunur kılan hafif karartma (posteri kapatmaz) */
+.scrim {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(180deg, transparent 62%, rgba(3, 11, 22, 0.45) 100%);
   pointer-events: none;
 }
 
@@ -107,7 +115,8 @@ a { text-decoration: none; color: inherit; }
    TELEFON (varsayılan): panel altta tam genişlik
    ============================================================ */
 @media (max-width: 767px) {
-  .stage::before { background-position: center 12%; }
+  /* Telefon: poster üstte hizalı, tamamı görünür */
+  .stage::before { background-position: center top; }
   .wa-btn { width: 100%; }
 }
 @media (max-width: 380px) {
@@ -119,11 +128,12 @@ a { text-decoration: none; color: inherit; }
    BİLGİSAYAR (≥ 768px): poster ortada, panel sol altta kompakt kart
    ============================================================ */
 @media (min-width: 768px) {
+  /* Bilgisayar: poster ortada tamamen görünür, yanlar aynı fotonun bulanığı */
   .stage::before { background-position: center center; }
   .scrim {
     background:
-      linear-gradient(90deg, rgba(3,11,22,.75) 0%, rgba(3,11,22,.25) 32%, transparent 55%),
-      linear-gradient(180deg, transparent 60%, rgba(3,11,22,.6) 100%);
+      linear-gradient(90deg, rgba(3,11,22,.55) 0%, rgba(3,11,22,.15) 28%, transparent 48%),
+      linear-gradient(180deg, transparent 70%, rgba(3,11,22,.4) 100%);
   }
   .panel {
     left: 40px; right: auto; bottom: 40px;
