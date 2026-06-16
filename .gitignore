@@ -1,0 +1,14 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editör
+.vscode/
+.idea/
+
+# Yerel önizleme sunucusu (yayına gerek yok)
+serve.ps1
+
+# Orijinal kaynak görseller (assets/ içine kopyalandı)
+WhatsApp Image*.jpeg
