@@ -277,3 +277,103 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .fab, .swipe-hint { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ============================================================
+   MASAÜSTÜ DÜZENİ (PC) — ≥ 980px
+   Telefonda uygulama, PC'de geniş klasik site görünümü
+   ============================================================ */
+@media (min-width: 980px) {
+  :root { --app-w: 100%; }
+  html { scroll-padding-top: 96px; }
+  body { padding: 0; background: var(--bg); }
+
+  .app {
+    max-width: none; width: 100%; min-height: 100vh;
+    border-radius: 0 !important; box-shadow: none !important;
+    padding: 0 0 0 0; overflow: visible;
+  }
+
+  /* telefon süslerini gizle */
+  .statusbar { display: none; }
+  .swipe-hint, .pager, .discover { display: none; }
+
+  /* ---- Üst navbar (brand) ---- */
+  .app-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 68px;
+    padding: 0 6vw; justify-content: flex-start;
+    background: rgba(11,14,18,.88); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { font-size: 1.6rem; }
+  .bell { display: none; }
+
+  /* ---- Tab bar → sağ üst yatay menü ---- */
+  .tabbar {
+    position: fixed; top: 0; left: 0; right: 0; bottom: auto; z-index: 61;
+    max-width: none; transform: none; height: 68px;
+    display: flex; justify-content: flex-end; align-items: center; gap: 6px;
+    padding: 0 6vw; background: transparent; border: 0; backdrop-filter: none;
+    pointer-events: none; /* şeffaf alan logoyu engellemesin */
+  }
+  .tab { pointer-events: auto; }
+  .tab { flex-direction: row; gap: 8px; font-size: .98rem; padding: 10px 16px; border-radius: 10px; transition: color .2s, background .2s; }
+  .tab:hover { color: #fff; background: rgba(255,255,255,.06); }
+  .tab svg { width: 19px; height: 19px; }
+  .tab-cta { background: linear-gradient(135deg, var(--orange), #ff5e00); color: #fff; fill: #fff; box-shadow: 0 8px 18px rgba(255,122,24,.35); }
+  .tab-cta:hover { color: #fff; }
+  .tab-cta svg { background: none; padding: 0; margin: 0; width: 19px; height: 19px; box-shadow: none; }
+
+  /* ---- Arama: üstte ortalı ---- */
+  .search-bar { position: static; max-width: 560px; margin: 100px auto 26px; }
+
+  /* ---- İçerik genişliği ---- */
+  .feed { max-width: 1140px; margin: 0 auto; padding: 0 6vw 60px; }
+
+  /* ---- Hero: geniş banner ---- */
+  .listing-media { aspect-ratio: auto; height: 460px; border-radius: 26px; }
+  .listing-overlay { top: 50%; transform: translateY(-50%); left: 6%; right: auto; text-align: left; max-width: 540px; padding: 0; }
+  .price { font-size: 4rem; }
+  .chip-type { margin-left: 0; }
+  .listing-overlay .chip { margin-right: 8px; }
+  .play { left: auto; right: 12%; }
+  .side-rail { flex-direction: row; right: 6%; bottom: 24px; gap: 24px; }
+
+  /* ---- Aksiyonlar: 4'lü satır, ortalı ---- */
+  .actions { grid-template-columns: repeat(4, 1fr); max-width: 760px; margin: 0 auto 26px; }
+  .act { flex-direction: row; padding: 16px; font-size: 1rem; }
+
+  /* ---- İlan sahibi ---- */
+  .owner { max-width: 760px; margin: 0 auto 30px; grid-template-columns: auto 1fr auto; }
+  .mini-map { grid-column: auto; height: auto; min-width: 220px; }
+
+  /* ---- Başlıklar büyüt ---- */
+  .block { max-width: 1140px; margin: 0 auto 48px; }
+  .block-title { font-size: 1.7rem; }
+
+  /* ---- Çok sütunlu gridler ---- */
+  .tiles { grid-template-columns: repeat(4, 1fr); }
+  .why-grid { grid-template-columns: repeat(4, 1fr); }
+  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+  .step { min-width: 0; }
+
+  .picker { max-width: 640px; }
+  .route-pill { max-width: 640px; }
+  .price-list { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .price-row { grid-template-columns: 1fr; text-align: center; }
+  .pr-price { text-align: center; }
+  .pr-btn { grid-column: 1; justify-self: center; padding: 9px 28px; }
+
+  .reviews { display: grid; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+  .review { flex: none; }
+
+  .cta { max-width: 760px; margin: 0 auto 40px; padding: 44px 30px; }
+  .cta h2 { font-size: 1.8rem; }
+
+  /* ---- FAB: ekran sağ alt ---- */
+  .fab { right: 32px; bottom: 32px; width: 60px; height: 60px; }
+}
+
+/* Geçiş aralığı (tablet): telefon çerçevesini sadeleştir */
+@media (min-width: 480px) and (max-width: 979px) {
+  .app { border-radius: 32px; }
+}
