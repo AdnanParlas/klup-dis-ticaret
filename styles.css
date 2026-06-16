@@ -19,7 +19,7 @@ a { text-decoration: none; color: inherit; }
 /* ============ ARKA PLAN (aynı fotonun bulanığı) ============ */
 .bg {
   position: fixed; inset: -40px; z-index: 0;
-  background: url('assets/process.jpeg') center center / cover no-repeat;
+  background: url('assets/poster.jpeg') center center / cover no-repeat;
   filter: blur(34px) brightness(.5);
 }
 
@@ -28,17 +28,17 @@ a { text-decoration: none; color: inherit; }
   position: fixed; inset: 0; margin: auto; z-index: 1;
   aspect-ratio: 1024 / 1536;
   max-width: 100vw; max-height: 100vh;
-  background: url('assets/process.jpeg') center center / cover no-repeat;
+  background: url('assets/poster.jpeg') center center / cover no-repeat;
 }
 
 /* ============ PANEL (mavi işaretli yere oturur) ============ */
 .panel {
   position: absolute;
-  left: 4%; bottom: 17%; width: 44%;
+  left: 4%; bottom: 6%; width: 52%;
   background: var(--glass);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--line); border-radius: 16px;
-  padding: 12px;
+  border: 1px solid var(--line); border-radius: 14px;
+  padding: 10px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
   animation: rise .5s ease both;
 }
@@ -78,26 +78,24 @@ a { text-decoration: none; color: inherit; }
    TELEFON (≤ 767px): panel biraz daha geniş ve okunur
    ============================================================ */
 @media (max-width: 767px) {
-  .panel { left: 5%; width: 62%; bottom: 17.5%; padding: 11px; }
-  .seg-btn { font-size: .8rem; }
+  .panel { left: 5%; width: 60%; bottom: 6.5%; padding: 9px; }
 }
 @media (max-width: 430px) {
-  .panel { width: 74%; }
+  .panel { width: 72%; }
 }
 
 /* ============================================================
    BİLGİSAYAR (≥ 768px): panel kompakt kart
    ============================================================ */
 @media (min-width: 768px) {
-  .panel { width: 42%; max-width: 360px; padding: 16px; border-radius: 20px; }
-  .seg-btn { font-size: .9rem; padding: 10px; }
-  .selrow select { font-size: .92rem; padding: 12px 32px 12px 13px; }
-  .teklif-btn { font-size: 1rem; padding: 13px; }
+  .panel { width: 34%; max-width: 300px; padding: 12px; border-radius: 16px; }
+  .ports select { font-size: .82rem; }
+  .teklif-btn { font-size: .92rem; padding: 11px; }
 }
 
 /* alçak/geniş pencerede taşmayı önle */
 @media (min-width: 768px) and (max-aspect-ratio: 1/1) {
-  .panel { width: 46%; }
+  .panel { width: 40%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
