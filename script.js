@@ -1,166 +1,125 @@
 /* ============================================================
-   KLÜP Lojistik - script.js (mobil uygulama arayüzü)
-   Tek ayar: aşağıdaki WHATSAPP_NUMBER.
+   KLÜP Dış Ticaret - tek ekran teklif aracı
+   Tek ayar: WHATSAPP_NUMBER (+ / 00 olmadan, örn: 905326534005)
    ============================================================ */
-
-// Uluslararası format, + veya 00 OLMADAN. Örn: 905326534005
 const WHATSAPP_NUMBER = "905326534005";
 
-/* --- WhatsApp linkleri --- */
-function openWhatsApp(msg) {
-  var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg || "Merhaba, bilgi almak istiyorum.");
-  window.open(url, "_blank", "noopener");
-}
-document.querySelectorAll(".js-whatsapp").forEach(function (el) {
-  el.addEventListener("click", function (e) {
-    e.preventDefault();
-    openWhatsApp(el.getAttribute("data-msg"));
-  });
-});
-
-/* ============================================================
-   LİMANA GÖRE FİYAT HESAPLAYICI
-   ============================================================ */
+/* Temel tarife (Shanghai ↔ İstanbul referans) */
 var BASE = {
-  fcl: { price: 1250, min: 25, max: 30 },
-  lcl: { price: 760,  min: 28, max: 32 },
-  air: { price: 4350, min: 5,  max: 7  }
+  fcl: { label: "🚢 Denizyolu (FCL)", price: 1250, min: 25, max: 30 },
+  lcl: { label: "🚢 Denizyolu (LCL)", price: 760,  min: 28, max: 32 },
+  air: { label: "✈️ Havayolu",        price: 4350, min: 5,  max: 7  }
 };
-var ORIGINS = [
-  { id: "shanghai",  name: "Shanghai", f: 1.00, d: 0 },
-  { id: "ningbo",    name: "Ningbo",   f: 1.01, d: 0 },
-  { id: "shenzhen",  name: "Shenzhen", f: 1.03, d: 1 },
-  { id: "guangzhou", name: "Guangzhou",f: 1.04, d: 1 },
-  { id: "qingdao",   name: "Qingdao",  f: 1.06, d: 2 },
-  { id: "xiamen",    name: "Xiamen",   f: 1.05, d: 1 },
-  { id: "tianjin",   name: "Tianjin",  f: 1.08, d: 3 },
-  { id: "dalian",    name: "Dalian",   f: 1.09, d: 3 },
-  { id: "hongkong",  name: "Hong Kong",f: 1.02, d: 1 },
-  { id: "yiwu",      name: "Yiwu",     f: 1.12, d: 2 }
+
+/* Çin limanları */
+var CN = [
+  { name: "Shanghai", f: 1.00, d: 0 },
+  { name: "Ningbo",   f: 1.01, d: 0 },
+  { name: "Shenzhen", f: 1.03, d: 1 },
+  { name: "Guangzhou",f: 1.04, d: 1 },
+  { name: "Qingdao",  f: 1.06, d: 2 },
+  { name: "Xiamen",   f: 1.05, d: 1 },
+  { name: "Tianjin",  f: 1.08, d: 3 },
+  { name: "Dalian",   f: 1.09, d: 3 },
+  { name: "Hong Kong",f: 1.02, d: 1 },
+  { name: "Yiwu",     f: 1.12, d: 2 }
 ];
-var DESTS = [
-  { id: "ambarli",    name: "İstanbul (Ambarlı)",     f: 1.00, d: 0 },
-  { id: "haydarpasa", name: "İstanbul (Haydarpaşa)",  f: 1.01, d: 0 },
-  { id: "kocaeli",    name: "Kocaeli (Evyap)",        f: 1.02, d: 1 },
-  { id: "gemlik",     name: "Gemlik (Bursa)",         f: 1.03, d: 1 },
-  { id: "tekirdag",   name: "Tekirdağ",               f: 1.03, d: 1 },
-  { id: "izmir",      name: "İzmir (Alsancak)",       f: 1.05, d: 2 },
-  { id: "mersin",     name: "Mersin",                 f: 1.08, d: 3 },
-  { id: "iskenderun", name: "İskenderun",             f: 1.10, d: 3 },
-  { id: "antalya",    name: "Antalya",                f: 1.09, d: 3 },
-  { id: "samsun",     name: "Samsun",                 f: 1.12, d: 4 }
+/* Türkiye limanları */
+var TR = [
+  { name: "İstanbul (Ambarlı)",    f: 1.00, d: 0 },
+  { name: "İstanbul (Haydarpaşa)", f: 1.01, d: 0 },
+  { name: "Kocaeli (Evyap)",       f: 1.02, d: 1 },
+  { name: "Gemlik (Bursa)",        f: 1.03, d: 1 },
+  { name: "Tekirdağ",              f: 1.03, d: 1 },
+  { name: "İzmir (Alsancak)",      f: 1.05, d: 2 },
+  { name: "Mersin",                f: 1.08, d: 3 },
+  { name: "İskenderun",            f: 1.10, d: 3 },
+  { name: "Antalya",               f: 1.09, d: 3 },
+  { name: "Samsun",                f: 1.12, d: 4 }
 ];
 
-function fmtPrice(n) {
-  var s = String(Math.round(n / 5) * 5);
-  return "$" + s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-function buildOptions(select, list) {
+var origin = document.getElementById("origin");
+var dest = document.getElementById("dest");
+var originLabel = document.getElementById("originLabel");
+var destLabel = document.getElementById("destLabel");
+var results = document.getElementById("results");
+var routeLine = document.getElementById("routeLine");
+var priceList = document.getElementById("priceList");
+var direction = "cn-tr"; // cn-tr | tr-cn
+
+function fill(select, list) {
+  select.innerHTML = "";
   list.forEach(function (p) {
     var o = document.createElement("option");
-    o.value = p.id; o.textContent = p.name;
+    o.value = p.name; o.textContent = p.name;
     select.appendChild(o);
   });
 }
-function calcRow(base, o, d, isAir) {
-  var price = base.price * o.f * d.f;
-  var add = isAir ? Math.round((o.d + d.d) / 3) : (o.d + d.d);
-  return { price: price, min: base.min + add, max: base.max + add };
+function fmt(n) {
+  return "$" + String(Math.round(n / 5) * 5).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
-function renderPrices() {
-  var oSel = document.getElementById("originPort");
-  var dSel = document.getElementById("destPort");
-  var body = document.getElementById("priceBody");
-  var summary = document.getElementById("routeSummary");
-  if (!oSel || !dSel || !body) return;
+function find(list, name) {
+  return list.find(function (x) { return x.name === name; }) || list[0];
+}
 
-  var o = ORIGINS.find(function (x){ return x.id === oSel.value; }) || ORIGINS[0];
-  var d = DESTS.find(function (x){ return x.id === dSel.value; }) || DESTS[0];
+function applyDirection() {
+  if (direction === "cn-tr") {
+    fill(origin, CN); fill(dest, TR);
+    originLabel.textContent = "Çıkış (Çin)";
+    destLabel.textContent = "Varış (Türkiye)";
+  } else {
+    fill(origin, TR); fill(dest, CN);
+    originLabel.textContent = "Çıkış (Türkiye)";
+    destLabel.textContent = "Varış (Çin)";
+  }
+  results.hidden = true; // yön değişince sonucu gizle
+}
 
-  var rows = [
-    { key: "fcl", label: "🚢 Denizyolu (FCL)",  air: false },
-    { key: "lcl", label: "🚢 Denizyolu (LCL)",  air: false },
-    { key: "air", label: "✈️ Havayolu",         air: true }
-  ];
-
-  body.innerHTML = "";
-  rows.forEach(function (r) {
-    var c = calcRow(BASE[r.key], o, d, r.air);
-    var msg = "Merhaba, " + o.name + " → " + d.name + " güzergâhı için " + r.label.replace(/^\S+\s/, "") + " teklifi almak istiyorum.";
-    var row = document.createElement("div");
-    row.className = "price-row";
-    row.innerHTML =
-      '<div><div class="pr-method">' + r.label + '</div><div class="pr-time">' + c.min + '-' + c.max + ' gün • kapıdan kapıya</div></div>' +
-      '<div class="pr-price">' + fmtPrice(c.price) + '</div>' +
-      '<button class="pr-btn">Teklif Al</button>';
-    row.querySelector(".pr-btn").addEventListener("click", function(){ openWhatsApp(msg); });
-    body.appendChild(row);
+/* yön butonları */
+document.querySelectorAll(".seg-btn").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    document.querySelectorAll(".seg-btn").forEach(function (b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    direction = btn.getAttribute("data-dir");
+    applyDirection();
   });
-
-  if (summary) summary.innerHTML = "<b>" + o.name + "</b> <span>→</span> <b>" + d.name + "</b>";
-}
-(function initPricing(){
-  var oSel = document.getElementById("originPort");
-  var dSel = document.getElementById("destPort");
-  if (!oSel || !dSel) return;
-  buildOptions(oSel, ORIGINS);
-  buildOptions(dSel, DESTS);
-  oSel.addEventListener("change", renderPrices);
-  dSel.addEventListener("change", renderPrices);
-  renderPrices();
-})();
-
-/* --- Beğeni (kalp) --- */
-var likeBtn = document.querySelector(".js-like");
-var likeCount = document.getElementById("likeCount");
-if (likeBtn) {
-  likeBtn.addEventListener("click", function(){
-    var liked = likeBtn.classList.toggle("liked");
-    if (likeCount) likeCount.textContent = liked ? 129 : 128;
-  });
-}
-var fav2 = document.querySelector(".js-like-2");
-if (fav2) fav2.addEventListener("click", function(){ fav2.classList.toggle("liked"); });
-
-/* --- Mute (görsel) --- */
-var muteBtn = document.getElementById("muteBtn");
-if (muteBtn) muteBtn.addEventListener("click", function(){ muteBtn.style.opacity = muteBtn.style.opacity === "0.5" ? "1" : "0.5"; });
-
-/* --- Play / More → teklif --- */
-var playBtn = document.getElementById("playBtn");
-if (playBtn) playBtn.addEventListener("click", function(){ openWhatsApp("Merhaba, Shanghai → İstanbul LCL hattı hakkında bilgi ve teklif almak istiyorum."); });
-var moreBtn = document.getElementById("moreBtn");
-if (moreBtn) moreBtn.addEventListener("click", function(){ document.getElementById("fiyatlar").scrollIntoView(); });
-
-/* --- Alt menü aktiflik (scroll'a göre) --- */
-var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab[data-tab]"));
-var targets = tabs.map(function(t){ return document.querySelector(t.getAttribute("href")); });
-function setActiveTab() {
-  var y = window.scrollY + 160;
-  var idx = 0;
-  targets.forEach(function(sec, i){ if (sec && sec.offsetTop <= y) idx = i; });
-  tabs.forEach(function(t, i){ t.classList.toggle("active", i === idx); });
-}
-window.addEventListener("scroll", setActiveTab, { passive: true });
-setActiveTab();
-
-/* --- Arama → odak teklif (basit) --- */
-var searchInput = document.getElementById("searchInput");
-var filterBtn = document.getElementById("filterBtn");
-if (filterBtn) filterBtn.addEventListener("click", function(){ document.getElementById("fiyatlar").scrollIntoView(); });
-if (searchInput) searchInput.addEventListener("keydown", function(e){
-  if (e.key === "Enter") openWhatsApp('Merhaba, "' + searchInput.value + '" için nakliye teklifi almak istiyorum.');
 });
 
-/* --- Status bar saati --- */
-var sbTime = document.getElementById("sbTime");
-function tick() {
-  if (!sbTime) return;
-  var n = new Date();
-  sbTime.textContent = n.getHours() + ":" + String(n.getMinutes()).padStart(2, "0");
+/* fiyat al */
+function currentLists() {
+  return direction === "cn-tr" ? { o: CN, d: TR } : { o: TR, d: CN };
 }
-tick(); setInterval(tick, 30000);
+document.getElementById("priceBtn").addEventListener("click", function () {
+  var lists = currentLists();
+  var o = find(lists.o, origin.value);
+  var d = find(lists.d, dest.value);
 
-/* --- Yıl --- */
-var yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+  routeLine.innerHTML = "<b>" + o.name + "</b> → <b>" + d.name + "</b>";
+  priceList.innerHTML = "";
+  ["fcl", "lcl", "air"].forEach(function (k) {
+    var b = BASE[k];
+    var price = b.price * o.f * d.f;
+    var add = (k === "air") ? Math.round((o.d + d.d) / 3) : (o.d + d.d);
+    var item = document.createElement("div");
+    item.className = "price-item";
+    item.innerHTML =
+      '<div class="pi-left"><span class="pi-method">' + b.label + '</span>' +
+      '<span class="pi-time">' + (b.min + add) + "-" + (b.max + add) + ' gün • kapıdan kapıya</span></div>' +
+      '<span class="pi-price">' + fmt(price) + '</span>';
+    priceList.appendChild(item);
+  });
+  results.hidden = false;
+});
+
+/* whatsapp */
+document.getElementById("waBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+  var lists = currentLists();
+  var o = find(lists.o, origin.value).name;
+  var d = find(lists.d, dest.value).name;
+  var msg = "Merhaba, " + o + " → " + d + " güzergâhı için en uygun nakliye teklifini almak istiyorum.";
+  window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+});
+
+/* başlat */
+applyDirection();
