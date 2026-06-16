@@ -44,22 +44,16 @@ a { text-decoration: none; color: inherit; }
 }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
-/* yön segmenti */
-.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; background: rgba(0,0,0,.3); border-radius: 11px; padding: 4px; margin-bottom: 9px; }
-.seg-btn { border: 0; background: transparent; color: #dbe7f4; font-weight: 700; font-size: .82rem; padding: 8px 4px; border-radius: 8px; cursor: pointer; transition: .2s; }
-.seg-btn.active { background: linear-gradient(135deg, var(--orange), var(--orange-2)); color: #fff; box-shadow: 0 5px 14px rgba(247,148,29,.4); }
-
-/* liman seçimi (alt alta) */
-.selrow { display: grid; gap: 6px; justify-items: center; margin-bottom: 10px; }
-.selrow select {
-  width: 100%; padding: 10px 30px 10px 12px; border-radius: 10px;
-  background: rgba(255,255,255,.96); color: #0c2440; border: 0; font-weight: 700; font-size: .88rem;
-  cursor: pointer; appearance: none;
+/* liman değiştir (tek seçici, buton görünümlü) */
+.route-select {
+  width: 100%; margin-bottom: 9px; cursor: pointer; appearance: none;
+  padding: 11px 34px 11px 14px; border-radius: 11px; border: 0;
+  background-color: #fff; color: #0c2440; font-weight: 800; font-size: .9rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23f7941d' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 11px center;
+  background-repeat: no-repeat; background-position: right 12px center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
 }
-.selrow select:focus { outline: 2px solid var(--orange); }
-.down { color: var(--orange); font-size: 1rem; font-weight: 900; line-height: 1; }
+.route-select:focus { outline: 2px solid var(--orange); }
 
 /* teklif al (WhatsApp) */
 .teklif-btn {

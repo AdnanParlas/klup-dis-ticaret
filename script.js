@@ -1,42 +1,39 @@
 /* ============================================================
-   KLÜP Dış Ticaret - liman seç + Teklif Al (WhatsApp)
+   KLÜP Dış Ticaret - liman değiştir + WhatsApp Teklif Al
    Tek ayar: WHATSAPP_NUMBER (+ / 00 olmadan, örn: 905326534005)
    ============================================================ */
 const WHATSAPP_NUMBER = "905326534005";
 
-var CN = ["Shanghai","Ningbo","Shenzhen","Guangzhou","Qingdao","Xiamen","Tianjin","Dalian","Hong Kong","Yiwu"];
-var TR = ["İstanbul (Ambarlı)","İstanbul (Haydarpaşa)","Kocaeli (Evyap)","Gemlik (Bursa)","Tekirdağ","İzmir (Alsancak)","Mersin","İskenderun","Antalya","Samsun"];
+var TR = ["İstanbul","İzmir","Mersin","Kocaeli","Gemlik","Tekirdağ","Antalya","İskenderun","Samsun"];
+var CN = ["Shanghai","Shenzhen","Ningbo","Qingdao","Guangzhou","Hong Kong","Yiwu"];
 
-var origin = document.getElementById("origin");
-var dest = document.getElementById("dest");
-var direction = "cn-tr"; // cn-tr | tr-cn
+var route = document.getElementById("route");
 
-function fill(select, list) {
-  select.innerHTML = "";
-  list.forEach(function (name) {
+function addGroup(label, builder) {
+  var g = document.createElement("optgroup");
+  g.label = label;
+  builder(g);
+  route.appendChild(g);
+}
+addGroup("Çin → Türkiye", function (g) {
+  TR.forEach(function (city) {
     var o = document.createElement("option");
-    o.value = name; o.textContent = name;
-    select.appendChild(o);
+    o.value = "Çin → " + city;
+    o.textContent = "Çin → " + city;
+    g.appendChild(o);
   });
-}
-function applyDirection() {
-  if (direction === "cn-tr") { fill(origin, CN); fill(dest, TR); }
-  else { fill(origin, TR); fill(dest, CN); }
-}
-
-document.querySelectorAll(".seg-btn").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    document.querySelectorAll(".seg-btn").forEach(function (b) { b.classList.remove("active"); });
-    btn.classList.add("active");
-    direction = btn.getAttribute("data-dir");
-    applyDirection();
+});
+addGroup("Türkiye → Çin", function (g) {
+  CN.forEach(function (city) {
+    var o = document.createElement("option");
+    o.value = "Türkiye → " + city;
+    o.textContent = "Türkiye → " + city;
+    g.appendChild(o);
   });
 });
 
 document.getElementById("teklifBtn").addEventListener("click", function (e) {
   e.preventDefault();
-  var msg = "Merhaba, " + origin.value + " → " + dest.value + " güzergâhı için en uygun nakliye teklifini almak istiyorum.";
+  var msg = "Merhaba, " + route.value + " güzergâhı için en uygun nakliye teklifini almak istiyorum.";
   window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
 });
-
-applyDirection();
