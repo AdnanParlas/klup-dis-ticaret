@@ -1,69 +1,60 @@
 /* ============================================================
-   KLÜP Dış Ticaret - script.js
-   Sunucusuz / statik. Tek ayar: aşağıdaki WHATSAPP_NUMBER.
+   KLÜP Lojistik - script.js (mobil uygulama arayüzü)
+   Tek ayar: aşağıdaki WHATSAPP_NUMBER.
    ============================================================ */
 
-// ⚠️ BURAYI KENDİ NUMARANIZLA DEĞİŞTİRİN
-// Uluslararası format, başında + veya 00 OLMADAN. Örn. Türkiye: 905xxxxxxxxx
+// Uluslararası format, + veya 00 OLMADAN. Örn: 905326534005
 const WHATSAPP_NUMBER = "905326534005";
 
-/* --- WhatsApp linklerini kur --- */
+/* --- WhatsApp linkleri --- */
+function openWhatsApp(msg) {
+  var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg || "Merhaba, bilgi almak istiyorum.");
+  window.open(url, "_blank", "noopener");
+}
 document.querySelectorAll(".js-whatsapp").forEach(function (el) {
   el.addEventListener("click", function (e) {
     e.preventDefault();
-    var msg = el.getAttribute("data-msg") || "Merhaba, bilgi almak istiyorum.";
-    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
-    window.open(url, "_blank", "noopener");
+    openWhatsApp(el.getAttribute("data-msg"));
   });
 });
 
 /* ============================================================
    LİMANA GÖRE FİYAT HESAPLAYICI
-   Fiyatlar tahmini/referans amaçlıdır. Çarpanları buradan ayarlayın.
    ============================================================ */
-
-// Referans güzergâh: Shanghai -> İstanbul (görseldeki örnek fiyatlar)
 var BASE = {
-  fcl: { price: 1250, min: 25, max: 30 }, // Denizyolu komple
-  lcl: { price: 760,  min: 28, max: 32 }, // Denizyolu parsiyel
-  air: { price: 4350, min: 5,  max: 7  }  // Havayolu
+  fcl: { price: 1250, min: 25, max: 30 },
+  lcl: { price: 760,  min: 28, max: 32 },
+  air: { price: 4350, min: 5,  max: 7  }
 };
-
-// Çin çıkış limanları: fiyat çarpanı + denizyoluna eklenen gün
 var ORIGINS = [
-  { id: "shanghai",  name: "Shanghai (Şanghay)", f: 1.00, d: 0 },
-  { id: "ningbo",    name: "Ningbo",             f: 1.01, d: 0 },
-  { id: "shenzhen",  name: "Shenzhen (Şenzen)",  f: 1.03, d: 1 },
-  { id: "guangzhou", name: "Guangzhou",          f: 1.04, d: 1 },
-  { id: "qingdao",   name: "Qingdao (Çingdao)",  f: 1.06, d: 2 },
-  { id: "xiamen",    name: "Xiamen (Şiamen)",    f: 1.05, d: 1 },
-  { id: "tianjin",   name: "Tianjin (Tiencin)",  f: 1.08, d: 3 },
-  { id: "dalian",    name: "Dalian",             f: 1.09, d: 3 },
-  { id: "hongkong",  name: "Hong Kong",          f: 1.02, d: 1 },
-  { id: "yiwu",      name: "Yiwu (iç bölge)",    f: 1.12, d: 2 }
+  { id: "shanghai",  name: "Shanghai", f: 1.00, d: 0 },
+  { id: "ningbo",    name: "Ningbo",   f: 1.01, d: 0 },
+  { id: "shenzhen",  name: "Shenzhen", f: 1.03, d: 1 },
+  { id: "guangzhou", name: "Guangzhou",f: 1.04, d: 1 },
+  { id: "qingdao",   name: "Qingdao",  f: 1.06, d: 2 },
+  { id: "xiamen",    name: "Xiamen",   f: 1.05, d: 1 },
+  { id: "tianjin",   name: "Tianjin",  f: 1.08, d: 3 },
+  { id: "dalian",    name: "Dalian",   f: 1.09, d: 3 },
+  { id: "hongkong",  name: "Hong Kong",f: 1.02, d: 1 },
+  { id: "yiwu",      name: "Yiwu",     f: 1.12, d: 2 }
 ];
-
-// Türkiye varış limanları: fiyat çarpanı + denizyoluna eklenen gün
 var DESTS = [
-  { id: "ambarli",    name: "İstanbul (Ambarlı)",       f: 1.00, d: 0 },
-  { id: "haydarpasa", name: "İstanbul (Haydarpaşa)",    f: 1.01, d: 0 },
-  { id: "kocaeli",    name: "Kocaeli (Körfez/Evyap)",   f: 1.02, d: 1 },
-  { id: "gemlik",     name: "Gemlik (Bursa)",           f: 1.03, d: 1 },
-  { id: "tekirdag",   name: "Tekirdağ",                 f: 1.03, d: 1 },
-  { id: "izmir",      name: "İzmir (Alsancak)",         f: 1.05, d: 2 },
-  { id: "mersin",     name: "Mersin",                   f: 1.08, d: 3 },
-  { id: "iskenderun", name: "İskenderun",               f: 1.10, d: 3 },
-  { id: "antalya",    name: "Antalya",                  f: 1.09, d: 3 },
-  { id: "samsun",     name: "Samsun",                   f: 1.12, d: 4 }
+  { id: "ambarli",    name: "İstanbul (Ambarlı)",     f: 1.00, d: 0 },
+  { id: "haydarpasa", name: "İstanbul (Haydarpaşa)",  f: 1.01, d: 0 },
+  { id: "kocaeli",    name: "Kocaeli (Evyap)",        f: 1.02, d: 1 },
+  { id: "gemlik",     name: "Gemlik (Bursa)",         f: 1.03, d: 1 },
+  { id: "tekirdag",   name: "Tekirdağ",               f: 1.03, d: 1 },
+  { id: "izmir",      name: "İzmir (Alsancak)",       f: 1.05, d: 2 },
+  { id: "mersin",     name: "Mersin",                 f: 1.08, d: 3 },
+  { id: "iskenderun", name: "İskenderun",             f: 1.10, d: 3 },
+  { id: "antalya",    name: "Antalya",                f: 1.09, d: 3 },
+  { id: "samsun",     name: "Samsun",                 f: 1.12, d: 4 }
 ];
 
 function fmtPrice(n) {
-  return "$" + Math.round(n / 5) * 5; // en yakın 5'e yuvarla
+  var s = String(Math.round(n / 5) * 5);
+  return "$" + s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
-function withThousands(s) {
-  return s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
 function buildOptions(select, list) {
   list.forEach(function (p) {
     var o = document.createElement("option");
@@ -71,16 +62,11 @@ function buildOptions(select, list) {
     select.appendChild(o);
   });
 }
-
-function calcRow(base, oFactor, dFactor, oDays, dDays, airDays) {
-  var price = base.price * oFactor * dFactor;
-  var min = base.min + (airDays ? 0 : oDays + dDays);
-  var max = base.max + (airDays ? 0 : oDays + dDays);
-  // hava için günlere küçük ekleme
-  if (airDays) { min += Math.round((oDays + dDays) / 3); max += Math.round((oDays + dDays) / 3); }
-  return { price: price, min: min, max: max };
+function calcRow(base, o, d, isAir) {
+  var price = base.price * o.f * d.f;
+  var add = isAir ? Math.round((o.d + d.d) / 3) : (o.d + d.d);
+  return { price: price, min: base.min + add, max: base.max + add };
 }
-
 function renderPrices() {
   var oSel = document.getElementById("originPort");
   var dSel = document.getElementById("destPort");
@@ -88,40 +74,32 @@ function renderPrices() {
   var summary = document.getElementById("routeSummary");
   if (!oSel || !dSel || !body) return;
 
-  var o = ORIGINS.find(function (x) { return x.id === oSel.value; }) || ORIGINS[0];
-  var d = DESTS.find(function (x) { return x.id === dSel.value; }) || DESTS[0];
+  var o = ORIGINS.find(function (x){ return x.id === oSel.value; }) || ORIGINS[0];
+  var d = DESTS.find(function (x){ return x.id === dSel.value; }) || DESTS[0];
 
   var rows = [
-    { key: "fcl", label: "🚢 Denizyolu (FCL - Komple)", air: false },
-    { key: "lcl", label: "🚢 Denizyolu (LCL - Parsiyel)", air: false },
-    { key: "air", label: "✈️ Havayolu", air: true }
+    { key: "fcl", label: "🚢 Denizyolu (FCL)",  air: false },
+    { key: "lcl", label: "🚢 Denizyolu (LCL)",  air: false },
+    { key: "air", label: "✈️ Havayolu",         air: true }
   ];
 
   body.innerHTML = "";
   rows.forEach(function (r) {
-    var c = calcRow(BASE[r.key], o.f, d.f, o.d, d.d, r.air);
-    var priceStr = withThousands(fmtPrice(c.price));
-    var msg = "Merhaba, " + o.name + " -> " + d.name + " güzergâhı için " +
-              r.label.replace(/^[^\s]+\s/, "") + " teklifi almak istiyorum.";
-    var tr = document.createElement("tr");
-    tr.innerHTML =
-      '<td data-label="Yöntem">' + r.label + '</td>' +
-      '<td data-label="Süre">' + c.min + '-' + c.max + ' gün</td>' +
-      '<td data-label="Fiyat">' + priceStr + '</td>' +
-      '<td><a href="#" class="btn btn-outline btn-xs js-whatsapp-dyn">Teklif Al</a></td>';
-    tr.querySelector(".js-whatsapp-dyn").addEventListener("click", function (e) {
-      e.preventDefault();
-      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
-    });
-    body.appendChild(tr);
+    var c = calcRow(BASE[r.key], o, d, r.air);
+    var msg = "Merhaba, " + o.name + " → " + d.name + " güzergâhı için " + r.label.replace(/^\S+\s/, "") + " teklifi almak istiyorum.";
+    var row = document.createElement("div");
+    row.className = "price-row";
+    row.innerHTML =
+      '<div><div class="pr-method">' + r.label + '</div><div class="pr-time">' + c.min + '-' + c.max + ' gün • kapıdan kapıya</div></div>' +
+      '<div class="pr-price">' + fmtPrice(c.price) + '</div>' +
+      '<button class="pr-btn">Teklif Al</button>';
+    row.querySelector(".pr-btn").addEventListener("click", function(){ openWhatsApp(msg); });
+    body.appendChild(row);
   });
 
-  if (summary) {
-    summary.innerHTML = "<strong>" + o.name + "</strong> <span>→</span> <strong>" + d.name + "</strong>";
-  }
+  if (summary) summary.innerHTML = "<b>" + o.name + "</b> <span>→</span> <b>" + d.name + "</b>";
 }
-
-(function initPricing() {
+(function initPricing(){
   var oSel = document.getElementById("originPort");
   var dSel = document.getElementById("destPort");
   if (!oSel || !dSel) return;
@@ -132,38 +110,56 @@ function renderPrices() {
   renderPrices();
 })();
 
-/* --- Mobil menü --- */
-var navToggle = document.getElementById("navToggle");
-var nav = document.getElementById("nav");
-if (navToggle && nav) {
-  navToggle.addEventListener("click", function () {
-    nav.classList.toggle("open");
-  });
-  nav.querySelectorAll("a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      nav.classList.remove("open");
-    });
+/* --- Beğeni (kalp) --- */
+var likeBtn = document.querySelector(".js-like");
+var likeCount = document.getElementById("likeCount");
+if (likeBtn) {
+  likeBtn.addEventListener("click", function(){
+    var liked = likeBtn.classList.toggle("liked");
+    if (likeCount) likeCount.textContent = liked ? 129 : 128;
   });
 }
+var fav2 = document.querySelector(".js-like-2");
+if (fav2) fav2.addEventListener("click", function(){ fav2.classList.toggle("liked"); });
 
-/* --- Scroll reveal --- */
-var sections = document.querySelectorAll(".section");
-if ("IntersectionObserver" in window) {
-  var io = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-  sections.forEach(function (s) { io.observe(s); });
-} else {
-  sections.forEach(function (s) { s.classList.add("in-view"); });
+/* --- Mute (görsel) --- */
+var muteBtn = document.getElementById("muteBtn");
+if (muteBtn) muteBtn.addEventListener("click", function(){ muteBtn.style.opacity = muteBtn.style.opacity === "0.5" ? "1" : "0.5"; });
+
+/* --- Play / More → teklif --- */
+var playBtn = document.getElementById("playBtn");
+if (playBtn) playBtn.addEventListener("click", function(){ openWhatsApp("Merhaba, Shanghai → İstanbul LCL hattı hakkında bilgi ve teklif almak istiyorum."); });
+var moreBtn = document.getElementById("moreBtn");
+if (moreBtn) moreBtn.addEventListener("click", function(){ document.getElementById("fiyatlar").scrollIntoView(); });
+
+/* --- Alt menü aktiflik (scroll'a göre) --- */
+var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab[data-tab]"));
+var targets = tabs.map(function(t){ return document.querySelector(t.getAttribute("href")); });
+function setActiveTab() {
+  var y = window.scrollY + 160;
+  var idx = 0;
+  targets.forEach(function(sec, i){ if (sec && sec.offsetTop <= y) idx = i; });
+  tabs.forEach(function(t, i){ t.classList.toggle("active", i === idx); });
 }
+window.addEventListener("scroll", setActiveTab, { passive: true });
+setActiveTab();
+
+/* --- Arama → odak teklif (basit) --- */
+var searchInput = document.getElementById("searchInput");
+var filterBtn = document.getElementById("filterBtn");
+if (filterBtn) filterBtn.addEventListener("click", function(){ document.getElementById("fiyatlar").scrollIntoView(); });
+if (searchInput) searchInput.addEventListener("keydown", function(e){
+  if (e.key === "Enter") openWhatsApp('Merhaba, "' + searchInput.value + '" için nakliye teklifi almak istiyorum.');
+});
+
+/* --- Status bar saati --- */
+var sbTime = document.getElementById("sbTime");
+function tick() {
+  if (!sbTime) return;
+  var n = new Date();
+  sbTime.textContent = n.getHours() + ":" + String(n.getMinutes()).padStart(2, "0");
+}
+tick(); setInterval(tick, 30000);
 
 /* --- Yıl --- */
 var yearEl = document.getElementById("year");

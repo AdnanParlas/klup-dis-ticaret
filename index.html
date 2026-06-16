@@ -2,16 +2,10 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KLÜP Dış Ticaret | Çin → Türkiye En Uygun Nakliye Teklifi</title>
-  <meta name="description" content="Çin'den Türkiye'ye en uygun nakliye çözümü. 27 yıllık tecrübe, deniz & hava taşımacılığı, parsiyel & komple yük, gümrükleme ve kapıdan kapıya teslimat. Hemen WhatsApp'tan teklif alın." />
-  <meta name="theme-color" content="#0a1f3c" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="KLÜP Dış Ticaret | Çin → Türkiye En Uygun Nakliye Teklifi" />
-  <meta property="og:description" content="27 yıllık tecrübe ile Çin'den Türkiye'ye sorunsuz, güvenli ve rekabetçi fiyatlı taşımacılık." />
-  <meta property="og:type" content="website" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>KLÜP Lojistik | Çin → Türkiye Nakliye</title>
+  <meta name="description" content="Çin'den Türkiye'ye en uygun nakliye. Deniz & hava taşımacılığı, parsiyel/komple yük, gümrükleme, kapıdan kapıya. WhatsApp'tan anında teklif." />
+  <meta name="theme-color" content="#0b0e12" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -19,373 +13,226 @@
 </head>
 <body>
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header" id="header">
-    <div class="container header-inner">
-      <a href="#hero" class="logo" aria-label="KLÜP Dış Ticaret">
-        <span class="logo-mark">K</span>
-        <span class="logo-text">KLÜP <small>DIŞ TİCARET</small></span>
-      </a>
-      <nav class="nav" id="nav">
-        <a href="#hizmetler">Hizmetler</a>
-        <a href="#nasil">Nasıl Çalışır</a>
-        <a href="#limanlar">Limanlar</a>
-        <a href="#fiyatlar">Fiyatlar</a>
-        <a href="#neden">Neden Biz</a>
-        <a href="#yorumlar">Yorumlar</a>
-        <a href="#iletisim">İletişim</a>
-      </nav>
-      <a href="#" class="btn btn-whatsapp btn-sm js-whatsapp" data-msg="Merhaba, Çin'den Türkiye'ye nakliye teklifi almak istiyorum.">
-        <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.2c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.6 16 28.6zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/></svg>
-        Teklif Al
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menü">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+<div class="app">
+
+  <!-- ===== Faux status bar ===== -->
+  <div class="statusbar">
+    <span class="sb-time" id="sbTime">9:41</span>
+    <span class="sb-icons">
+      <svg viewBox="0 0 18 12" width="17" height="11" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+      <svg viewBox="0 0 18 14" width="17" height="13" aria-hidden="true"><path d="M9 3.5c2.2 0 4.2.8 5.7 2.2l1.4-1.5C14.3 2.4 11.8 1.4 9 1.4S3.7 2.4 1.9 4.2l1.4 1.5C4.8 4.3 6.8 3.5 9 3.5zm0 3.6c1.2 0 2.3.5 3.1 1.2l1.4-1.5C12.4 5.7 10.8 5 9 5s-3.4.7-4.5 1.8l1.4 1.5C6.7 7.6 7.8 7.1 9 7.1zm0 3.5l2-2.1c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8l2 2.1z"/></svg>
+      <svg viewBox="0 0 26 13" width="25" height="12" aria-hidden="true"><rect x="0.5" y="1" width="21" height="11" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.5"/><rect x="2" y="2.5" width="17" height="8" rx="1.5"/><rect x="23" y="4" width="2" height="5" rx="1"/></svg>
+    </span>
+  </div>
+
+  <!-- ===== App header ===== -->
+  <header class="app-header">
+    <a href="#hero" class="brand"><span class="brand-o">KLÜP</span> <span>Lojistik</span></a>
+    <button class="bell" aria-label="Bildirimler">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2Z"/></svg>
+      <span class="bell-dot"></span>
+    </button>
   </header>
 
-  <!-- ============ HERO (TOFU - Farkındalık) ============ -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <span class="badge">1. FARKINDALIK</span>
-        <h1>
-          <span class="route">ÇİN <span class="arrow">→</span> TÜRKİYE</span>
-          En Uygun Nakliye Teklifi
-        </h1>
-        <p class="hero-sub">27 yıllık deneyimimiz ve güçlü iş ortaklarımızla Çin'den Türkiye'ye sorunsuz taşıyoruz.</p>
-        <span class="exp-tag">27 YILLIK TECRÜBE</span>
-        <div class="hero-actions">
-          <a href="#" class="btn btn-whatsapp btn-lg js-whatsapp" data-msg="Merhaba, Çin'den Türkiye'ye en uygun nakliye teklifini almak istiyorum.">
-            <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.2c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.6 16 28.6zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/></svg>
-            WhatsApp'ta Teklif Al
-          </a>
-          <a href="#hizmetler" class="btn btn-ghost btn-lg">Hizmetleri Gör</a>
+  <!-- ===== Search ===== -->
+  <div class="search-bar">
+    <svg class="s-ico" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 20l-5.6-5.6a7 7 0 1 0-1.4 1.4L20 21zM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0z"/></svg>
+    <input id="searchInput" type="text" placeholder="Liman veya hizmet ara…" />
+    <button class="filter-btn" id="filterBtn" aria-label="Filtre">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+    </button>
+  </div>
+
+  <main class="feed">
+
+    <!-- ===== HERO LISTING CARD ===== -->
+    <section class="listing" id="hero">
+      <div class="listing-media">
+        <span class="tag-video"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M21 3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM10 16V8l6 4-6 4z"/></svg> Öne Çıkan Hat</span>
+        <button class="mute" id="muteBtn" aria-label="Ses">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM19 19.3l1.4-1.4L4.1 1.6 2.7 3l4.6 4.6L7 8H3v8h4l5 5v-6.6l4.3 4.3z"/></svg>
+        </button>
+
+        <div class="listing-overlay">
+          <div class="price">$760<small>'dan başlayan</small></div>
+          <div class="chip chip-loc"><svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg> Shanghai → İstanbul</div>
+          <div class="chip chip-type">🚢 Denizyolu LCL • 28-32 gün</div>
+        </div>
+
+        <button class="play" id="playBtn" aria-label="Oynat">
+          <svg viewBox="0 0 24 24" width="34" height="34"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        </button>
+
+        <div class="side-rail">
+          <button class="rail-btn js-like" aria-label="Beğen">
+            <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.3 4.5c2 0 3.3 1.1 4.2 2.3.9-1.2 2.2-2.3 4.2-2.3 3.3 0 4.9 3.5 3.3 7.2C19.5 16.4 12 21 12 21z"/></svg>
+            <b id="likeCount">128</b>
+          </button>
+          <button class="rail-btn js-whatsapp" data-msg="Merhaba, Shanghai → İstanbul LCL hattını paylaşıp teklif almak istiyorum." aria-label="Paylaş">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M18 16a3 3 0 0 0-2.3 1.1l-6.8-3.5a3 3 0 0 0 0-1.2l6.7-3.5a3 3 0 1 0-.8-2 3 3 0 0 0 .1.8L8.3 8.5a3 3 0 1 0 0 7l6.8 3.5a3 3 0 1 0 2.9-3z"/></svg>
+            <span>Paylaş</span>
+          </button>
+          <button class="rail-btn" id="moreBtn" aria-label="Diğer">
+            <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg>
+            <span>Diğer</span>
+          </button>
+        </div>
+
+        <div class="pager">1 / 3</div>
+        <div class="swipe-hint"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 8l-6 6h12z"/></svg> Aşağı kaydır • daha fazla hizmet</div>
+      </div>
+    </section>
+
+    <!-- ===== ACTION ROW ===== -->
+    <div class="actions">
+      <a href="#" class="act act-primary js-whatsapp" data-msg="Merhaba, Çin → Türkiye nakliye için teklif almak istiyorum.">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+        Mesaj Yaz
+      </a>
+      <a href="tel:+905326534005" class="act act-primary">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1z"/></svg>
+        Hemen Konuş
+      </a>
+      <a href="#limanlar" class="act">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        Haritada Gör
+      </a>
+      <a href="#fiyatlar" class="act">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        Teklif Al
+      </a>
+    </div>
+
+    <!-- ===== OWNER CARD ===== -->
+    <div class="owner">
+      <div class="owner-left">
+        <span class="owner-logo">K</span>
+        <div>
+          <small>İlan Sahibi</small>
+          <strong>KLÜP Dış Ticaret <svg class="verified" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2l2.4 1.8 3-.2 1 2.8 2.6 1.4-.8 2.9.8 2.9-2.6 1.4-1 2.8-3-.2L12 22l-2.4-1.8-3 .2-1-2.8L3 16.4l.8-2.9L3 10.6l2.6-1.4 1-2.8 3 .2L12 2z"/><path fill="#0b0e12" d="M10.6 14.6l-2.2-2.2-1.1 1.1 3.3 3.3 5.6-5.6-1.1-1.1z"/></svg></strong>
+          <span class="owner-sub">27 yıl tecrübe • 120+ hat</span>
         </div>
       </div>
-    </div>
-    <div class="hero-stats">
-      <div class="container stats-grid">
-        <div class="stat"><strong>27+</strong><span>Yıllık Tecrübe</span></div>
-        <div class="stat"><strong>5.0</strong><span>Müşteri Memnuniyeti</span></div>
-        <div class="stat"><strong>7/24</strong><span>Destek</span></div>
-        <div class="stat"><strong>100%</strong><span>Sigortalı Taşıma</span></div>
+      <div class="owner-right">
+        <button class="mini-btn js-like-2"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.3 4.5c2 0 3.3 1.1 4.2 2.3.9-1.2 2.2-2.3 4.2-2.3 3.3 0 4.9 3.5 3.3 7.2C19.5 16.4 12 21 12 21z"/></svg> Favori</button>
+        <a href="#neden" class="mini-btn"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg> Detay</a>
       </div>
+      <a class="mini-map" href="#limanlar" aria-label="Haritada gör">
+        <span class="map-pin">📍</span>
+        <span class="map-label">Çin → Türkiye</span>
+      </a>
     </div>
-  </section>
 
-  <!-- ============ PROBLEM (İLGİ) ============ -->
-  <section class="section problem" id="problem">
-    <div class="container">
-      <span class="kicker">2. İLGİ / PROBLEM</span>
-      <h2>Yüksek nakliye maliyetleri sizi zorluyor mu?</h2>
-      <p class="section-lead">Çin'den ithalatta fiyat, güven ve teslimat sorunlarını ortadan kaldırıyoruz.</p>
-      <ul class="check-list">
-        <li>En uygun fiyat garantisi</li>
-        <li>Güvenli taşımacılık</li>
-        <li>Hızlı ve zamanında teslimat</li>
-        <li>Gümrükleme desteği</li>
-        <li>Kapıdan kapıya çözüm</li>
-      </ul>
+    <div class="discover">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 16l-6-6h12z"/></svg>
+      <span><b>Aşağı kaydırarak</b> tüm hizmetleri keşfet</span>
     </div>
-  </section>
 
-  <!-- ============ HİZMETLER (ÇÖZÜM) ============ -->
-  <section class="section services" id="hizmetler">
-    <div class="container">
-      <span class="kicker">3. ÇÖZÜM</span>
-      <h2>Sizin için en uygun nakliye çözümünü sunuyoruz</h2>
-      <p class="section-lead">İhtiyacınıza göre deniz, hava veya parsiyel/komple yük seçenekleriyle taşıyoruz.</p>
-      <div class="cards-3">
-        <article class="card">
-          <div class="card-icon">🚢</div>
-          <h3>Deniz Taşımacılığı</h3>
-          <p>FCL (komple konteyner) ve LCL (parsiyel) seçenekleriyle ekonomik ve güvenli deniz yolu çözümleri.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon">✈️</div>
-          <h3>Hava Taşımacılığı</h3>
-          <p>Acil ve değerli yükleriniz için en hızlı teslimat. 5-7 gün içinde Türkiye'de.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon">📦</div>
-          <h3>Parsiyel & Komple Yük</h3>
-          <p>Küçük partilerden tam yüke kadar her ölçekte esnek taşıma ve depolama.</p>
-        </article>
+    <!-- ===== HİZMETLER ===== -->
+    <section class="block" id="hizmetler">
+      <h2 class="block-title">Hizmetler</h2>
+      <div class="tiles">
+        <article class="tile"><span class="tile-ico">🚢</span><h3>Deniz Taşımacılığı</h3><p>FCL & LCL — ekonomik ve güvenli deniz yolu.</p></article>
+        <article class="tile"><span class="tile-ico">✈️</span><h3>Hava Taşımacılığı</h3><p>Acil yükler için 5-7 günde teslim.</p></article>
+        <article class="tile"><span class="tile-ico">📦</span><h3>Parsiyel & Komple</h3><p>Her ölçekte esnek taşıma ve depolama.</p></article>
+        <article class="tile"><span class="tile-ico">📋</span><h3>Gümrükleme</h3><p>Tüm gümrük işlemleri sizin adınıza.</p></article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ NASIL ÇALIŞIR (Süreç) ============ -->
-  <section class="section process" id="nasil">
-    <div class="container">
-      <span class="kicker">SÜREÇ</span>
-      <h2>4 adımda kapınıza teslim</h2>
-      <div class="steps">
-        <div class="step">
-          <span class="step-num">1</span>
-          <div class="step-icon">📥</div>
-          <h3>Yükünüzü Alıyoruz</h3>
-          <p>Çin'deki tedarikçinizden yükünüzü teslim alıyoruz.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">2</span>
-          <div class="step-icon">🛳️</div>
-          <h3>Güvenle Taşıyoruz</h3>
-          <p>En uygun yöntemle sigortalı şekilde taşıyoruz.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">3</span>
-          <div class="step-icon">📋</div>
-          <h3>Gümrüklemeyi Yönetiyoruz</h3>
-          <p>Tüm gümrük işlemlerinizi sizin adınıza tamamlıyoruz.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">4</span>
-          <div class="step-icon">🚚</div>
-          <h3>Kapınıza Teslim Ediyoruz</h3>
-          <p>Yükünüzü adresinize sorunsuz ulaştırıyoruz.</p>
-        </div>
+    <!-- ===== SÜREÇ ===== -->
+    <section class="block">
+      <h2 class="block-title">Nasıl Çalışır?</h2>
+      <div class="steps-row">
+        <div class="step"><span>1</span><b>Yükü Alıyoruz</b></div>
+        <div class="step"><span>2</span><b>Güvenle Taşıyoruz</b></div>
+        <div class="step"><span>3</span><b>Gümrüklüyoruz</b></div>
+        <div class="step"><span>4</span><b>Teslim Ediyoruz</b></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ LİMANLAR & HATLAR ============ -->
-  <section class="section ports" id="limanlar">
-    <div class="container">
-      <span class="kicker">LİMANLAR & HATLAR</span>
-      <h2>Çin ve Türkiye'nin tüm büyük limanlarına hizmet</h2>
-      <p class="section-lead">Aşağıdaki çıkış ve varış limanları arasında düzenli deniz ve hava taşımacılığı sağlıyoruz. Listede olmayan bir liman için de bize ulaşın.</p>
+    <!-- ===== LİMANLAR + FİYAT HESAPLAYICI ===== -->
+    <section class="block" id="fiyatlar">
+      <h2 class="block-title">Teklif Hesapla</h2>
+      <p class="block-sub">Çıkış ve varış limanını seç, tahmini fiyat anında çıksın.</p>
 
-      <div class="ports-grid">
-        <!-- Çin / Çıkış -->
-        <div class="port-col">
-          <div class="port-head">
-            <span class="flag">🇨🇳</span>
-            <div><h3>Çin — Çıkış Limanları</h3><small>Yükünüzü buradan teslim alıyoruz</small></div>
-          </div>
-          <ul class="port-list">
-            <li>Shanghai (Şanghay)</li>
-            <li>Shenzhen (Şenzen)</li>
-            <li>Ningbo</li>
-            <li>Guangzhou (Guangcou)</li>
-            <li>Qingdao (Çingdao)</li>
-            <li>Tianjin (Tiencin)</li>
-            <li>Xiamen (Şiamen)</li>
-            <li>Dalian</li>
-            <li>Yiwu (Yivu)</li>
-            <li>Hong Kong</li>
-          </ul>
-        </div>
-
-        <div class="ports-arrow" aria-hidden="true">
-          <span class="route-line"></span>
-          <span class="route-ship">🚢✈️</span>
-          <span class="route-line"></span>
-        </div>
-
-        <!-- Türkiye / Varış -->
-        <div class="port-col">
-          <div class="port-head">
-            <span class="flag">🇹🇷</span>
-            <div><h3>Türkiye — Varış Limanları</h3><small>Buradan kapınıza teslim ediyoruz</small></div>
-          </div>
-          <ul class="port-list">
-            <li>İstanbul (Ambarlı)</li>
-            <li>İstanbul (Haydarpaşa)</li>
-            <li>Mersin</li>
-            <li>İzmir (Alsancak)</li>
-            <li>Kocaeli (Körfez / Evyap)</li>
-            <li>Gemlik (Bursa)</li>
-            <li>İskenderun</li>
-            <li>Samsun</li>
-            <li>Tekirdağ</li>
-            <li>Antalya</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="ports-note">📍 Hava kargo için başlıca hatlar: <strong>Şanghay / Guangzhou / Shenzhen → İstanbul (IST &amp; SAW)</strong></p>
-    </div>
-  </section>
-
-  <!-- ============ FİYATLAR (Teklif örneği - BOFU) ============ -->
-  <section class="section pricing" id="fiyatlar">
-    <div class="container">
-      <span class="kicker">KARAR</span>
-      <h2>Limanı seç, fiyatı anında gör</h2>
-      <p class="section-lead">Çıkış ve varış limanını seçin; tahmini fiyat ve süre otomatik güncellensin. Net fiyat yük detayınıza göre belirlenir.</p>
-
-      <div class="route-picker">
-        <div class="picker-field">
-          <label for="originPort">🇨🇳 Çıkış Limanı (Çin)</label>
+      <div class="picker" id="limanlar">
+        <label class="pf">
+          <span>🇨🇳 Çıkış (Çin)</span>
           <select id="originPort"></select>
-        </div>
-        <span class="picker-arrow">→</span>
-        <div class="picker-field">
-          <label for="destPort">🇹🇷 Varış Limanı (Türkiye)</label>
+        </label>
+        <label class="pf">
+          <span>🇹🇷 Varış (Türkiye)</span>
           <select id="destPort"></select>
-        </div>
+        </label>
       </div>
 
-      <div class="route-summary" id="routeSummary"></div>
+      <div class="route-pill" id="routeSummary"></div>
+      <div class="price-list" id="priceBody"></div>
+      <p class="disclaimer">* Fiyatlar güzergâha göre tahminidir. Kesin teklif için WhatsApp'tan ulaşın.</p>
+    </section>
 
-      <div class="table-wrap">
-        <table class="price-table">
-          <thead>
-            <tr><th>Taşıma Yöntemi</th><th>Tahmini Süre</th><th>Tahmini Fiyat</th><th></th></tr>
-          </thead>
-          <tbody id="priceBody">
-            <!-- JS dolduruyor -->
-          </tbody>
-        </table>
+    <!-- ===== NEDEN BİZ ===== -->
+    <section class="block" id="neden">
+      <h2 class="block-title">Neden KLÜP?</h2>
+      <div class="why-grid">
+        <div class="why"><span>🏅</span><b>27 Yıl Tecrübe</b></div>
+        <div class="why"><span>🛡️</span><b>Sigortalı Taşıma</b></div>
+        <div class="why"><span>🎧</span><b>7/24 Destek</b></div>
+        <div class="why"><span>💲</span><b>Rekabetçi Fiyat</b></div>
       </div>
-      <p class="price-disclaimer">* Fiyatlar seçilen güzergâha göre tahminidir ve referans amaçlıdır. Kesin teklif için WhatsApp'tan iletişime geçin.</p>
-      <ul class="mini-list">
-        <li>✔ Kapıdan kapıya teslim</li>
-        <li>✔ Gümrük işlemleri dahil</li>
-        <li>✔ Şeffaf fiyatlandırma</li>
-        <li>✔ 7/24 takip ve destek</li>
-      </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ NEDEN BİZ (Güven) ============ -->
-  <section class="section why" id="neden">
-    <div class="container">
-      <span class="kicker">4. GÜVEN</span>
-      <h2>Neden KLÜP Dış Ticaret?</h2>
-      <div class="cards-4">
-        <div class="why-card"><div class="why-icon">🏅</div><h3>27 Yıllık Tecrübe</h3><p>Çeyrek asrı aşan dış ticaret birikimi.</p></div>
-        <div class="why-card"><div class="why-icon">🛡️</div><h3>Güvenli & Sigortalı</h3><p>Yükleriniz baştan sona sigorta güvencesinde.</p></div>
-        <div class="why-card"><div class="why-icon">🎧</div><h3>7/24 Destek</h3><p>Sevkiyatınızı her an takip edin, biz hep yanınızdayız.</p></div>
-        <div class="why-card"><div class="why-icon">💲</div><h3>Rekabetçi Fiyatlar</h3><p>Güçlü iş ortaklarımızla en uygun fiyat garantisi.</p></div>
+    <!-- ===== YORUMLAR ===== -->
+    <section class="block" id="yorumlar">
+      <h2 class="block-title">Müşteri Yorumları <span class="rate">★ 5.0</span></h2>
+      <div class="reviews">
+        <article class="review"><div class="rv-stars">★★★★★</div><p>"Zaman ve maliyet avantajı sağladı. Kesinlikle tavsiye ederiz."</p><div class="rv-who"><span>A</span><div><b>Asya İthalat A.Ş.</b><small>İthalat Müdürü</small></div></div></article>
+        <article class="review"><div class="rv-stars">★★★★★</div><p>"Gümrük dahil her şeyi hallettiler, süreç çok şeffaftı."</p><div class="rv-who"><span>M</span><div><b>Mert Y.</b><small>E-ticaret</small></div></div></article>
+        <article class="review"><div class="rv-stars">★★★★★</div><p>"Havayolu ile 6 günde geldi. Fiyat ve hızda rekabetçiler."</p><div class="rv-who"><span>S</span><div><b>Selin K.</b><small>Tekstil</small></div></div></article>
+        <article class="review"><div class="rv-stars">★★★★★</div><p>"İletişimi en iyi firma. 7/24 ulaşabiliyoruz."</p><div class="rv-who"><span>E</span><div><b>Emre D.</b><small>Makine Sanayi</small></div></div></article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ YORUMLAR / SOSYAL KANIT ============ -->
-  <section class="section testimonial" id="yorumlar">
-    <div class="container">
-      <div class="testimonial-head">
-        <span class="kicker light">MÜŞTERİ YORUMLARI</span>
-        <h2>Müşterilerimiz ne diyor?</h2>
-        <div class="stars">★★★★★ <span>5.0 / 5.0 — Yüzlerce mutlu müşteri</span></div>
-      </div>
-
-      <div class="reviews-grid">
-        <article class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"KLÜP Dış Ticaret ile çalışmak bize zaman ve maliyet avantajı sağladı. Kesinlikle tavsiye ederiz."</p>
-          <div class="review-author">
-            <span class="avatar">A</span>
-            <div><strong>Asya İthalat A.Ş.</strong><small>İthalat Müdürü</small></div>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"Çin'deki tedarikçimizden malları sorunsuz teslim aldılar, gümrük işlerini baştan sona hallettiler. Süreç çok şeffaftı."</p>
-          <div class="review-author">
-            <span class="avatar">M</span>
-            <div><strong>Mert Y.</strong><small>E-ticaret Firması</small></div>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"Havayolu ile acil yüklerimizi 6 günde Türkiye'ye getirdiler. Fiyat ve hız konusunda gerçekten rekabetçiler."</p>
-          <div class="review-author">
-            <span class="avatar">S</span>
-            <div><strong>Selin K.</strong><small>Tekstil İthalatçısı</small></div>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"Yıllardır farklı firmalarla çalıştık, en güvenilir ve iletişimi en iyi olan KLÜP oldu. 7/24 ulaşabiliyoruz."</p>
-          <div class="review-author">
-            <span class="avatar">E</span>
-            <div><strong>Emre D.</strong><small>Makine Sanayi</small></div>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"Parsiyel yükümüz için çok uygun bir çözüm sundular. Kapıdan kapıya teslimat tam zamanında gerçekleşti."</p>
-          <div class="review-author">
-            <span class="avatar">B</span>
-            <div><strong>Burcu A.</strong><small>Mobilya Aksesuar</small></div>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"İlk ithalat deneyimimdi, her adımda yanımdaydılar. Endişelerim tamamen ortadan kalktı, teşekkürler."</p>
-          <div class="review-author">
-            <span class="avatar">O</span>
-            <div><strong>Okan T.</strong><small>Elektronik Toptan</small></div>
-          </div>
-        </article>
-      </div>
-
-      <p class="proof-line">Yüzlerce mutlu müşteri, binlerce başarılı sevkiyat.</p>
-    </div>
-  </section>
-
-  <!-- ============ CTA / İLETİŞİM (EYLEM) ============ -->
-  <section class="section cta" id="iletisim">
-    <div class="container cta-inner">
-      <span class="kicker light">5. EYLEM</span>
-      <h2>Size özel en uygun nakliye teklifini alın!</h2>
-      <p>Hemen WhatsApp'tan yazın, dakikalar içinde dönüş yapalım.</p>
-      <a href="#" class="btn btn-whatsapp btn-lg js-whatsapp" data-msg="Merhaba, Çin'den Türkiye'ye nakliye için size özel teklif almak istiyorum.">
-        <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.2c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.6 16 28.6zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/></svg>
+    <!-- ===== CTA ===== -->
+    <section class="block cta" id="iletisim">
+      <h2>Size özel teklifinizi alın</h2>
+      <p>WhatsApp'tan yazın, dakikalar içinde dönelim.</p>
+      <a href="#" class="cta-btn js-whatsapp" data-msg="Merhaba, Çin → Türkiye nakliye için size özel teklif almak istiyorum.">
+        <svg viewBox="0 0 32 32" width="22" height="22"><path fill="currentColor" d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.2c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.6 16 28.6zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/></svg>
         WhatsApp'ta Teklif Al
       </a>
-      <p class="cta-note">↗ Hızlı teklif almak için tıklayın!</p>
-    </div>
-  </section>
+      <p class="cta-foot">© <span id="year"></span> KLÜP Dış Ticaret</p>
+    </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="logo logo-footer">
-          <span class="logo-mark">K</span>
-          <span class="logo-text">KLÜP <small>DIŞ TİCARET</small></span>
-        </div>
-        <p class="footer-about">Çin'den Türkiye'ye en uygun nakliye çözümü. 27 yıllık tecrübe ile güvenli, hızlı ve rekabetçi taşımacılık.</p>
-      </div>
-      <div>
-        <h4>Hizmetler</h4>
-        <ul>
-          <li><a href="#hizmetler">Deniz Taşımacılığı</a></li>
-          <li><a href="#hizmetler">Hava Taşımacılığı</a></li>
-          <li><a href="#hizmetler">Parsiyel & Komple Yük</a></li>
-          <li><a href="#hizmetler">Gümrükleme</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>İletişim</h4>
-        <ul>
-          <li><a href="#" class="js-whatsapp" data-msg="Merhaba, bilgi almak istiyorum.">WhatsApp ile yazın</a></li>
-          <li><a href="mailto:info@klupdisticaret.com">info@klupdisticaret.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© <span id="year"></span> KLÜP Dış Ticaret. Tüm hakları saklıdır.</span>
-    </div>
-  </footer>
+    <div class="feed-end"></div>
+  </main>
+
+  <!-- ===== BOTTOM TAB BAR ===== -->
+  <nav class="tabbar">
+    <a href="#hero" class="tab active" data-tab>
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 3 2 12h3v8h6v-5h2v5h6v-8h3z"/></svg><span>Ana Sayfa</span>
+    </a>
+    <a href="#hizmetler" class="tab" data-tab>
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg><span>Hizmetler</span>
+    </a>
+    <a href="#fiyatlar" class="tab tab-cta" data-tab>
+      <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span>Teklif</span>
+    </a>
+    <a href="#limanlar" class="tab" data-tab>
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg><span>Limanlar</span>
+    </a>
+    <a href="#iletisim" class="tab" data-tab>
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg><span>İletişim</span>
+    </a>
+  </nav>
 
   <!-- Floating WhatsApp -->
-  <a href="#" class="float-wa js-whatsapp" data-msg="Merhaba, Çin'den Türkiye'ye nakliye teklifi almak istiyorum." aria-label="WhatsApp'tan yazın">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm0 28.2c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.1 5.8-12.9 12.9-12.9S28.9 8.8 28.9 15.9 23.1 28.6 16 28.6zm7.1-9.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/></svg>
+  <a href="#" class="fab js-whatsapp" data-msg="Merhaba, Çin → Türkiye nakliye teklifi almak istiyorum." aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28"><path fill="currentColor" d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm7.1 18.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9z"/></svg>
   </a>
 
-  <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
