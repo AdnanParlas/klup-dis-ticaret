@@ -4,55 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>KLÜP Dış Ticaret | Çin ↔ Türkiye Nakliye</title>
-  <meta name="description" content="Çin'den Türkiye'ye (ve Türkiye'den Çin'e) en uygun nakliye teklifi. Liman seç, fiyat al, WhatsApp'tan ulaş." />
+  <meta name="description" content="Çin'den Türkiye'ye (ve Türkiye'den Çin'e) en uygun nakliye teklifi. Liman seç, WhatsApp'tan teklif al." />
   <meta name="theme-color" content="#0c3a6b" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <main class="stage">
-    <div class="scrim"></div>
+  <!-- Boşlukları dolduran: aynı fotoğrafın bulanık hali -->
+  <div class="bg"></div>
 
-    <!-- Sol alt etkileşim paneli -->
+  <!-- Posterin tamamı (kırpılmadan) -->
+  <main class="frame">
+
+    <!-- Mavi ile işaretlenen yere oturan panel -->
     <section class="panel" aria-label="Teklif al">
-      <p class="panel-title">Güzergâhını seç</p>
-
-      <!-- Yön -->
       <div class="seg" role="tablist">
         <button class="seg-btn active" data-dir="cn-tr" type="button">Çin → Türkiye</button>
         <button class="seg-btn" data-dir="tr-cn" type="button">Türkiye → Çin</button>
       </div>
 
-      <!-- Liman seçimi -->
       <div class="selrow">
-        <label class="sel">
-          <span id="originLabel">Çıkış (Çin)</span>
-          <select id="origin"></select>
-        </label>
-        <span class="arrow" id="dirArrow">→</span>
-        <label class="sel">
-          <span id="destLabel">Varış (Türkiye)</span>
-          <select id="dest"></select>
-        </label>
+        <select id="origin" aria-label="Çıkış limanı"></select>
+        <span class="down">↓</span>
+        <select id="dest" aria-label="Varış limanı"></select>
       </div>
 
-      <button class="price-btn" id="priceBtn" type="button">Fiyat Al</button>
-
-      <!-- Fiyat sonuçları -->
-      <div class="results" id="results" hidden>
-        <div class="route-line" id="routeLine"></div>
-        <div class="price-list" id="priceList"></div>
-      </div>
-
-      <!-- WhatsApp -->
-      <a href="#" class="wa-btn" id="waBtn">
+      <a href="#" class="teklif-btn" id="teklifBtn">
         <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm7.1 18.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9z"/></svg>
-        WhatsApp'ta Teklif Al
+        Teklif Al
       </a>
     </section>
+
   </main>
 
   <script src="script.js"></script>
