@@ -38,45 +38,64 @@ document.getElementById("swap").addEventListener("click", function () {
   dest.value = t;
 });
 
-/* ============ TEKLİF FORMU (MODAL) ============ */
+/* ============ TEKLİF FORMU (ADIMLI SLIDER) ============ */
 var modal = document.getElementById("modal");
-var modalSubmit = document.getElementById("modalSubmit");
+var track = document.getElementById("track");
+var dotsWrap = document.getElementById("dots");
+var stepBack = document.getElementById("stepBack");
+var slides = track.querySelectorAll(".slide");
+var QUESTION_COUNT = 3;          // soru sayısı (son slayt: özet/gönder)
+var TOTAL = slides.length;       // 4
+var step = 0;
 var answers = { ithalat: null, konteyner: null, zaman: null };
 
-function openModal() { modal.hidden = false; }
+/* ilerleme noktaları (soru sayısı kadar) */
+for (var i = 0; i < QUESTION_COUNT; i++) {
+  var d = document.createElement("span");
+  d.className = "dot";
+  dotsWrap.appendChild(d);
+}
+var dots = dotsWrap.querySelectorAll(".dot");
+
+function goTo(i) {
+  step = Math.max(0, Math.min(TOTAL - 1, i));
+  track.style.transform = "translateX(" + (-step * 100) + "%)";
+  stepBack.hidden = (step === 0);
+  dots.forEach(function (dot, idx) { dot.classList.toggle("active", idx === Math.min(step, QUESTION_COUNT - 1)); });
+}
+
+function openModal() { modal.hidden = false; goTo(0); }
 function closeModal() { modal.hidden = true; }
 
-/* Teklif Al → formu aç */
 document.getElementById("teklifBtn").addEventListener("click", function (e) {
   e.preventDefault();
   openModal();
 });
-
-/* Kapatma (çarpı veya arka plana tıklama) */
 document.getElementById("modalClose").addEventListener("click", closeModal);
 modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+stepBack.addEventListener("click", function () { goTo(step - 1); });
 
-/* Şık seçimi (her soruda tek seçim) */
+/* şık seçimi → cevabı kaydet ve sonraki adıma kay */
 document.querySelectorAll(".q").forEach(function (q) {
   var key = q.getAttribute("data-q");
+  var slideIndex = Array.prototype.indexOf.call(slides, q.closest(".slide"));
   q.querySelectorAll(".opt").forEach(function (opt) {
     opt.addEventListener("click", function () {
       q.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("sel"); });
       opt.classList.add("sel");
       answers[key] = opt.getAttribute("data-val");
-      modalSubmit.disabled = !(answers.ithalat && answers.konteyner && answers.zaman);
+      setTimeout(function () { goTo(slideIndex + 1); }, 260);
     });
   });
 });
 
-/* Gönder → cevaplarla WhatsApp'a yönlendir */
-modalSubmit.addEventListener("click", function () {
-  if (modalSubmit.disabled) return;
+/* gönder → cevaplarla WhatsApp'a yönlendir */
+document.getElementById("modalSubmit").addEventListener("click", function () {
   var msg =
     "Merhaba, " + origin.value + " → " + dest.value + " güzergâhı için fiyat teklifi almak istiyorum.\n\n" +
-    "• Aktif ithalat: " + answers.ithalat + "\n" +
-    "• Yıllık konteyner: " + answers.konteyner + "\n" +
-    "• Sevkiyat zamanı: " + answers.zaman;
+    "• Aktif ithalat: " + (answers.ithalat || "-") + "\n" +
+    "• Yıllık konteyner: " + (answers.konteyner || "-") + "\n" +
+    "• Sevkiyat zamanı: " + (answers.zaman || "-");
   window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
   closeModal();
 });

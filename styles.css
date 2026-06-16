@@ -125,10 +125,27 @@ a { text-decoration: none; color: inherit; }
 }
 .modal-close:hover { background: rgba(255,255,255,.22); }
 
-.modal-card h2 { font-size: 1.3rem; font-weight: 800; color: #fff; padding-right: 30px; }
-.modal-sub { color: #b9cce0; font-size: .9rem; margin: 6px 0 18px; }
+/* adım üst bar: geri + noktalar */
+.steps-top { display: flex; align-items: center; gap: 12px; margin: 4px 0 18px; min-height: 30px; }
+.step-back { width: 30px; height: 30px; flex-shrink: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.12); color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; }
+.step-back[hidden] { display: none; }
+.step-back:hover { background: rgba(255,255,255,.22); }
+.dots { display: flex; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.28); transition: .3s; }
+.dot.active { background: var(--orange); width: 22px; border-radius: 4px; }
 
-.q { margin-bottom: 16px; }
+/* slider */
+.viewport { overflow: hidden; }
+.track { display: flex; transition: transform .35s cubic-bezier(.4,0,.2,1); }
+.slide { flex: 0 0 100%; min-width: 100%; }
+
+/* son adım */
+.slide-final { text-align: center; padding: 8px 0; }
+.final-icon { width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%; background: linear-gradient(135deg, var(--wa), var(--wa-dark)); color: #fff; font-size: 1.8rem; display: grid; place-items: center; box-shadow: 0 8px 22px rgba(37,211,102,.4); }
+.slide-final h3 { font-size: 1.25rem; color: #fff; }
+.final-sub { color: #b9cce0; font-size: .92rem; margin: 6px 0 18px; }
+
+.q { margin-bottom: 4px; }
 .q-title { font-weight: 700; font-size: .98rem; margin-bottom: 9px; color: #fff; }
 .opts { display: flex; flex-wrap: wrap; gap: 8px; }
 .opt {
