@@ -40,7 +40,7 @@ var slides = track.querySelectorAll(".slide");
 var QUESTION_COUNT = 3;
 var TOTAL = slides.length;
 var step = 0;
-var answers = { ithalat: null, konteyner: null, zaman: null };
+var answers = { yuk: null, zaman: null, karar: null };
 
 for (var i = 0; i < QUESTION_COUNT; i++) {
   var d = document.createElement("span");
@@ -83,9 +83,9 @@ document.getElementById("modalSubmit").addEventListener("click", function () {
   var msg =
     "Merhaba, " + origin.value + " → " + dest.value + " güzergâhı için fiyat teklifi almak istiyorum.\n\n" +
     "• Yük tipi: " + cargo + "\n" +
-    "• Aktif ithalat: " + (answers.ithalat || "-") + "\n" +
-    "• Yıllık konteyner: " + (answers.konteyner || "-") + "\n" +
-    "• Sevkiyat zamanı: " + (answers.zaman || "-");
+    "• Yük durumu: " + (answers.yuk || "-") + "\n" +
+    "• Sevkiyat zamanı: " + (answers.zaman || "-") + "\n" +
+    "• Karar verici: " + (answers.karar || "-");
   window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
   closeModal();
 });
