@@ -86,6 +86,7 @@ h1, h2, h3 { line-height: 1.12; letter-spacing: -.01em; }
 .qc-head p { color: var(--muted); font-size: .9rem; margin-top: 2px; }
 
 .fld-label { display: block; font-weight: 700; font-size: .98rem; margin: 0 0 8px 2px; }
+.label-note { color: var(--muted); font-weight: 500; font-size: .86rem; }
 .select-wrap { position: relative; margin-bottom: 16px; }
 .select-wrap .pin { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #6b7a8f; pointer-events: none; }
 .select-wrap .chev { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #6b7a8f; pointer-events: none; }
