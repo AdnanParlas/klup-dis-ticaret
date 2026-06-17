@@ -3,36 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>KLÜP Dış Ticaret | Çin → Türkiye Nakliye</title>
-  <meta name="description" content="Çin → Türkiye en uygun nakliye teklifi. Liman seç, WhatsApp'tan teklif al." />
-  <meta name="theme-color" content="#0c3a6b" />
+  <title>KLÜP Dış Ticaret | Çin → Türkiye En Uygun Nakliye Teklifi</title>
+  <meta name="description" content="Çin'den Türkiye'ye en uygun navlun teklifi. 27 yıllık tecrübe. Nereden-nereye seçin, WhatsApp'tan hızlı teklif alın." />
+  <meta name="theme-color" content="#0a3460" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 <body>
 
-  <!-- Boşlukları dolduran: aynı fotoğrafın bulanık hali -->
-  <div class="bg"></div>
+  <div class="page">
 
-  <!-- Posterin tamamı (kırpılmadan) -->
-  <main class="frame">
+    <!-- Logo -->
+    <header class="top">
+      <span class="logo-mark">
+        <svg viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="6" fill="#fff"/><path d="M14 10h7v12l9-12h8L25 24l13 14h-8l-9-11v11h-7z" fill="#0a3460"/></svg>
+      </span>
+      <span class="logo-text">KLÜP <small>DIŞ TİCARET</small></span>
+    </header>
 
-    <!-- Mavi işaretli kutu: liman değiştir + WhatsApp teklif al -->
-    <section class="panel" aria-label="Teklif al">
-      <div class="ports">
-        <select id="origin" aria-label="Çıkış limanı"></select>
-        <button class="swap" id="swap" type="button" aria-label="Limanların yerini değiştir">⇄</button>
-        <select id="dest" aria-label="Varış limanı"></select>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-img" role="img" aria-label="Konteyner gemisi"></div>
+      <div class="hero-content">
+        <h1>ÇİN <span class="arrow">→</span> TÜRKİYE<br>EN UYGUN NAKLİYE TEKLİFİ</h1>
+        <span class="badge">27 YILLIK TECRÜBE</span>
       </div>
-      <a href="#" class="teklif-btn" id="teklifBtn">
-        <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm7.1 18.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9z"/></svg>
+
+      <div class="features">
+        <div class="feat">
+          <svg class="f-ico blue" viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5z"/><path d="M10.5 13.2 8.6 11.3l-1.2 1.2 3.1 3.1 5.1-5.1-1.2-1.2z" fill="#0a3460"/></svg>
+          <b>Güvenilir Süreç</b>
+          <p>Uzman ekip ile sürekli takip.</p>
+        </div>
+        <div class="feat">
+          <svg class="f-ico orange" viewBox="0 0 24 24" width="30" height="30"><circle cx="12" cy="9" r="6" fill="currentColor"/><path d="m12 6 1 2 2 .2-1.5 1.4.4 2L12 10.6 10.1 11.6l.4-2L9 8.2 11 8z" fill="#0a3460"/><path d="M8.5 14 7 22l5-2 5 2-1.5-8z" fill="currentColor"/></svg>
+          <b>27 Yıllık Tecrübe</b>
+          <p>1997'den bu yana dış ticaret ve lojistikte yanınızdayız.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hızlı Teklif Al kartı -->
+    <section class="quote-card">
+      <div class="qc-head">
+        <svg class="qc-ico" viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M13 3v6h6" fill="#0a3460"/><circle cx="12" cy="15" r="3.4" fill="#0a3460"/><path d="M12 13.2v3.6M10.6 15h2.8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        <div>
+          <h2>Hızlı Teklif Al</h2>
+          <p>Çin'den Türkiye'ye en uygun navlun teklifini alın.</p>
+        </div>
+      </div>
+
+      <label class="fld-label" for="origin">Nereden</label>
+      <div class="select-wrap">
+        <svg class="pin" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        <select id="origin"></select>
+        <svg class="chev" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+      </div>
+
+      <label class="fld-label" for="dest">Nereye</label>
+      <div class="select-wrap">
+        <svg class="pin" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        <select id="dest"></select>
+        <svg class="chev" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+      </div>
+
+      <span class="fld-label">Yük Tipi</span>
+      <div class="seg-cargo" id="cargo">
+        <button type="button" data-cargo="20'">20'</button>
+        <button type="button" data-cargo="40'" class="active">40'</button>
+        <button type="button" data-cargo="40 HC">40 HC</button>
+      </div>
+
+      <a href="#" class="wa-btn" id="teklifBtn">
+        <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4zm7.1 18.6c-.4-.2-2.3-1.1-2.6-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5s-1.5 1.4-1.5 3.5 1.5 4.1 1.7 4.4c.2.3 3 4.6 7.3 6.4 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-1 2.7-1.9.3-.9.3-1.7.2-1.9z"/></svg>
         WhatsApp'ta Teklif Al
       </a>
     </section>
 
-  </main>
+    <!-- Alt bilgi şeridi -->
+    <footer class="bottom">
+      <div class="b-item">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2c1.7 0 3 2.7 3.5 5H8.5C9 6.7 10.3 4 12 4zM4.3 9h3.2c-.1 1-.1 2 0 3H4.3a8 8 0 0 1 0-3zm0 5h3.2c.5 2.3 1.3 4.3-.3 0zm.9 2h2.6c.3 1.2.8 2.3 1.4 3.2A8 8 0 0 1 5.2 16zM12 20c-1.7 0-3-2.7-3.5-5h7c-.5 2.3-1.8 5-3.5 5zm.5-7h-1c-.1-1-.1-2 0-3h7.2c.1 1 .1 2 0 3zm2.3 6.2c.6-.9 1.1-2 1.4-3.2h2.6a8 8 0 0 1-4 3.2zM16.5 9c.1 1 .1 2 0 3h3.2a8 8 0 0 0 0-3z"/></svg>
+        <span><b>Çin'in Tüm Limanlarından</b><br>Türkiye'ye</span>
+      </div>
+      <div class="b-item">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8v5a3 3 0 0 0 3 3h1v-7H6v-1a6 6 0 1 1 12 0v1h-2v7h1a3 3 0 0 0 3-3v-5a8 8 0 0 0-8-8z"/></svg>
+        <span><b>Uzman Destek</b><br>7/24 Yanınızda</span>
+      </div>
+      <div class="b-item">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5z"/><path d="M11 14.2 8.5 11.7l-1.2 1.2L11 16.6l6-6-1.2-1.2z" fill="#0a3460"/></svg>
+        <span><b>Güvenli & Şeffaf</b><br>Lojistik Süreç</span>
+      </div>
+    </footer>
+
+  </div>
 
   <!-- Teklif öncesi adım adım form -->
   <div class="modal" id="modal" hidden>
@@ -95,6 +161,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

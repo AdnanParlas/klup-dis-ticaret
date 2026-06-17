@@ -1,5 +1,5 @@
 /* ============================================================
-   KLÜP Dış Ticaret - liman seç (Çin+Türkiye, yer değiştirilebilir) + WhatsApp
+   KLÜP Dış Ticaret - Hızlı Teklif Al
    Tek ayar: WHATSAPP_NUMBER (+ / 00 olmadan, örn: 905326534005)
    ============================================================ */
 const WHATSAPP_NUMBER = "905326534005";
@@ -10,32 +10,25 @@ var TR = ["İstanbul","İzmir","Mersin","Kocaeli","Gemlik","Tekirdağ","Antalya"
 var origin = document.getElementById("origin");
 var dest = document.getElementById("dest");
 
-/* Her iki seçiciye de Çin + Türkiye limanlarını ekle */
-function fillAll(select) {
+function fill(select, list) {
   select.innerHTML = "";
-  [["🇨🇳 Çin", CN], ["🇹🇷 Türkiye", TR]].forEach(function (grp) {
-    var g = document.createElement("optgroup");
-    g.label = grp[0];
-    grp[1].forEach(function (city) {
-      var o = document.createElement("option");
-      o.value = city; o.textContent = city;
-      g.appendChild(o);
-    });
-    select.appendChild(g);
+  list.forEach(function (name) {
+    var o = document.createElement("option");
+    o.value = name; o.textContent = name;
+    select.appendChild(o);
   });
 }
-fillAll(origin);
-fillAll(dest);
+fill(origin, CN); origin.value = "Shanghai";
+fill(dest, TR);   dest.value = "İstanbul";
 
-/* Varsayılan: Shanghai → İstanbul */
-origin.value = "Shanghai";
-dest.value = "İstanbul";
-
-/* Limanların yerini değiştir (swap) */
-document.getElementById("swap").addEventListener("click", function () {
-  var t = origin.value;
-  origin.value = dest.value;
-  dest.value = t;
+/* ---- Yük tipi (konteyner) ---- */
+var cargo = "40'";
+document.querySelectorAll("#cargo button").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    document.querySelectorAll("#cargo button").forEach(function (b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    cargo = btn.getAttribute("data-cargo");
+  });
 });
 
 /* ============ TEKLİF FORMU (ADIMLI SLIDER) ============ */
@@ -44,12 +37,11 @@ var track = document.getElementById("track");
 var dotsWrap = document.getElementById("dots");
 var stepBack = document.getElementById("stepBack");
 var slides = track.querySelectorAll(".slide");
-var QUESTION_COUNT = 3;          // soru sayısı (son slayt: özet/gönder)
-var TOTAL = slides.length;       // 4
+var QUESTION_COUNT = 3;
+var TOTAL = slides.length;
 var step = 0;
 var answers = { ithalat: null, konteyner: null, zaman: null };
 
-/* ilerleme noktaları (soru sayısı kadar) */
 for (var i = 0; i < QUESTION_COUNT; i++) {
   var d = document.createElement("span");
   d.className = "dot";
@@ -63,7 +55,6 @@ function goTo(i) {
   stepBack.hidden = (step === 0);
   dots.forEach(function (dot, idx) { dot.classList.toggle("active", idx === Math.min(step, QUESTION_COUNT - 1)); });
 }
-
 function openModal() { modal.hidden = false; goTo(0); }
 function closeModal() { modal.hidden = true; }
 
@@ -75,7 +66,6 @@ document.getElementById("modalClose").addEventListener("click", closeModal);
 modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
 stepBack.addEventListener("click", function () { goTo(step - 1); });
 
-/* şık seçimi → cevabı kaydet ve sonraki adıma kay */
 document.querySelectorAll(".q").forEach(function (q) {
   var key = q.getAttribute("data-q");
   var slideIndex = Array.prototype.indexOf.call(slides, q.closest(".slide"));
@@ -89,10 +79,10 @@ document.querySelectorAll(".q").forEach(function (q) {
   });
 });
 
-/* gönder → cevaplarla WhatsApp'a yönlendir */
 document.getElementById("modalSubmit").addEventListener("click", function () {
   var msg =
     "Merhaba, " + origin.value + " → " + dest.value + " güzergâhı için fiyat teklifi almak istiyorum.\n\n" +
+    "• Yük tipi: " + cargo + "\n" +
     "• Aktif ithalat: " + (answers.ithalat || "-") + "\n" +
     "• Yıllık konteyner: " + (answers.konteyner || "-") + "\n" +
     "• Sevkiyat zamanı: " + (answers.zaman || "-");
