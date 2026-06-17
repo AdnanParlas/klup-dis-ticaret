@@ -50,7 +50,7 @@ for (var i = 0; i < DOT_COUNT; i++) {
 var dots = dotsWrap.querySelectorAll(".dot");
 
 var current = "yuk";
-var history = [];
+var histStack = [];
 var answers = { yuk: null, zaman: null, karar: null, konteyner: null };
 
 function render(id) {
@@ -59,13 +59,13 @@ function render(id) {
   current = id;
   var isQ = DOT_INDEX.hasOwnProperty(id);
   stepsTop.style.display = isQ ? "" : "none";
-  stepBack.hidden = (history.length === 0);
+  stepBack.hidden = (histStack.length === 0);
   if (isQ) dots.forEach(function (dot, idx) { dot.classList.toggle("active", idx === DOT_INDEX[id]); });
 }
-function go(id) { history.push(current); render(id); }
+function go(id) { histStack.push(current); render(id); }
 
 function openModal() {
-  history = [];
+  histStack = [];
   answers = { yuk: null, zaman: null, karar: null, konteyner: null };
   document.querySelectorAll(".opt.sel").forEach(function (o) { o.classList.remove("sel"); });
   modal.hidden = false;
@@ -80,7 +80,7 @@ document.getElementById("modalClose").addEventListener("click", closeModal);
 modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
 document.getElementById("closeDisq").addEventListener("click", closeModal);
 stepBack.addEventListener("click", function () {
-  if (history.length) render(history.pop());
+  if (histStack.length) render(histStack.pop());
 });
 
 /* sonraki adımı belirle (koşullu) */
