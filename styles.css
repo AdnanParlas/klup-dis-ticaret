@@ -163,8 +163,9 @@ h1, h2, h3 { line-height: 1.12; letter-spacing: -.01em; }
 .dot.active { background: var(--orange); width: 22px; border-radius: 4px; }
 
 .viewport { overflow: hidden; }
-.track { display: flex; transition: transform .35s cubic-bezier(.4,0,.2,1); }
-.slide { flex: 0 0 100%; min-width: 100%; display: flex; flex-direction: column; justify-content: center; }
+.slide { display: none; flex-direction: column; justify-content: center; }
+.slide.active { display: flex; animation: slideIn .32s cubic-bezier(.4,0,.2,1) both; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(34px); } to { opacity: 1; transform: none; } }
 
 .q { margin-bottom: 4px; }
 .q-title { font-weight: 700; font-size: 1.08rem; margin-bottom: 14px; color: #fff; text-align: center; }
@@ -178,7 +179,10 @@ h1, h2, h3 { line-height: 1.12; letter-spacing: -.01em; }
 .opt.sel { background: linear-gradient(135deg, var(--orange), var(--orange-2)); border-color: transparent; color: #fff; box-shadow: 0 6px 16px rgba(239,125,18,.4); }
 
 .slide-final { text-align: center; padding: 8px 0; }
-.final-icon { width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%; background: linear-gradient(135deg, var(--wa), var(--wa-dark)); color: #fff; font-size: 1.8rem; display: grid; place-items: center; box-shadow: 0 8px 22px rgba(37,211,102,.4); }
+.final-icon { width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%; background: linear-gradient(135deg, var(--wa), var(--wa-dark)); color: #fff; font-size: 1.8rem; font-weight: 800; display: grid; place-items: center; box-shadow: 0 8px 22px rgba(37,211,102,.4); }
+.final-icon.info { background: linear-gradient(135deg, #4a8fe0, #2f6dc0); font-style: italic; box-shadow: 0 8px 22px rgba(74,143,224,.4); }
+.modal-submit.alt { background: rgba(255,255,255,.14); box-shadow: none; }
+.modal-submit.alt:hover { background: rgba(255,255,255,.22); }
 .slide-final h3 { font-size: 1.25rem; color: #fff; }
 .final-sub { color: #b9cce0; font-size: .92rem; margin: 6px 0 18px; }
 .modal-submit {

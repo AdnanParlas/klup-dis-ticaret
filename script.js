@@ -31,50 +31,76 @@ document.querySelectorAll("#cargo button").forEach(function (btn) {
   });
 });
 
-/* ============ TEKLİF FORMU (ADIMLI SLIDER) ============ */
+/* ============ TEKLİF FORMU (KOŞULLU AKIŞ) ============ */
 var modal = document.getElementById("modal");
-var track = document.getElementById("track");
 var dotsWrap = document.getElementById("dots");
+var stepsTop = document.querySelector(".steps-top");
 var stepBack = document.getElementById("stepBack");
-var slides = track.querySelectorAll(".slide");
-var QUESTION_COUNT = 3;
-var TOTAL = slides.length;
-var step = 0;
-var answers = { yuk: null, zaman: null, karar: null };
 
-for (var i = 0; i < QUESTION_COUNT; i++) {
-  var d = document.createElement("span");
-  d.className = "dot";
-  dotsWrap.appendChild(d);
+/* slaytları data-step ile eşle */
+var STEP = {};
+document.querySelectorAll(".slide").forEach(function (s) { STEP[s.getAttribute("data-step")] = s; });
+
+/* soru adımlarının ilerleme noktası indeksi (final/disq hariç) */
+var DOT_INDEX = { yuk: 0, zaman: 1, karar: 2, konteyner: 2 };
+var DOT_COUNT = 3;
+for (var i = 0; i < DOT_COUNT; i++) {
+  var d = document.createElement("span"); d.className = "dot"; dotsWrap.appendChild(d);
 }
 var dots = dotsWrap.querySelectorAll(".dot");
 
-function goTo(i) {
-  step = Math.max(0, Math.min(TOTAL - 1, i));
-  track.style.transform = "translateX(" + (-step * 100) + "%)";
-  stepBack.hidden = (step === 0);
-  dots.forEach(function (dot, idx) { dot.classList.toggle("active", idx === Math.min(step, QUESTION_COUNT - 1)); });
+var current = "yuk";
+var history = [];
+var answers = { yuk: null, zaman: null, karar: null, konteyner: null };
+
+function render(id) {
+  Object.keys(STEP).forEach(function (k) { STEP[k].classList.remove("active"); });
+  STEP[id].classList.add("active");
+  current = id;
+  var isQ = DOT_INDEX.hasOwnProperty(id);
+  stepsTop.style.display = isQ ? "" : "none";
+  stepBack.hidden = (history.length === 0);
+  if (isQ) dots.forEach(function (dot, idx) { dot.classList.toggle("active", idx === DOT_INDEX[id]); });
 }
-function openModal() { modal.hidden = false; goTo(0); }
+function go(id) { history.push(current); render(id); }
+
+function openModal() {
+  history = [];
+  answers = { yuk: null, zaman: null, karar: null, konteyner: null };
+  document.querySelectorAll(".opt.sel").forEach(function (o) { o.classList.remove("sel"); });
+  modal.hidden = false;
+  render("yuk");
+}
 function closeModal() { modal.hidden = true; }
 
 document.getElementById("teklifBtn").addEventListener("click", function (e) {
-  e.preventDefault();
-  openModal();
+  e.preventDefault(); openModal();
 });
 document.getElementById("modalClose").addEventListener("click", closeModal);
 modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
-stepBack.addEventListener("click", function () { goTo(step - 1); });
+document.getElementById("closeDisq").addEventListener("click", closeModal);
+stepBack.addEventListener("click", function () {
+  if (history.length) render(history.pop());
+});
+
+/* sonraki adımı belirle (koşullu) */
+function nextStep(stepId, val) {
+  if (stepId === "yuk")  return (val === "Sadece fiyat öğreniyorum") ? "disq" : "zaman";
+  if (stepId === "zaman") return "karar";
+  if (stepId === "karar") return (val === "Sadece bilgi topluyorum") ? "final" : "konteyner";
+  if (stepId === "konteyner") return "final";
+  return "final";
+}
 
 document.querySelectorAll(".q").forEach(function (q) {
   var key = q.getAttribute("data-q");
-  var slideIndex = Array.prototype.indexOf.call(slides, q.closest(".slide"));
   q.querySelectorAll(".opt").forEach(function (opt) {
     opt.addEventListener("click", function () {
       q.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("sel"); });
       opt.classList.add("sel");
-      answers[key] = opt.getAttribute("data-val");
-      setTimeout(function () { goTo(slideIndex + 1); }, 260);
+      var val = opt.getAttribute("data-val");
+      answers[key] = val;
+      setTimeout(function () { go(nextStep(key, val)); }, 260);
     });
   });
 });
@@ -85,7 +111,8 @@ document.getElementById("modalSubmit").addEventListener("click", function () {
     "• Yük tipi: " + cargo + "\n" +
     "• Yük durumu: " + (answers.yuk || "-") + "\n" +
     "• Sevkiyat zamanı: " + (answers.zaman || "-") + "\n" +
-    "• Karar verici: " + (answers.karar || "-");
+    "• Karar verici: " + (answers.karar || "-") +
+    (answers.konteyner ? "\n• Yıllık konteyner: " + answers.konteyner : "");
   window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
   closeModal();
 });
